@@ -1,0 +1,38 @@
+brew install dpkg
+
+http://www.king-foo.com/2011/11/creating-debianubuntu-deb-packages/
+
+In this post, I will show you how to create a .deb package from some binary files.
+
+Step 1: Create the directories
+
+Create a directory for your package. Also, create a directory DEBIAN.
+
+mkdir helloworld && mkdir helloworld/DEBIAN
+Step 2: Copy files into your package
+
+You can copy the files into your package with the full paths on the destination filesystem. E.g. if you want to put a file in /usr/local/bin/ you put it in helloworld/usr/local/bin/
+
+mkdir -p helloworld/usr/local/bin
+cp /usr/local/bin/helloworld.sh helloworld/usr/local/bin/
+Step 3: Create the control file
+
+Create a file 'control' in the DEBIAN directory
+
+<span class="Apple-style-span" style="font-family: Consolas, Monaco, monospace; font-size: 12px; white-space: pre;">Package: helloworld
+</span><span class="Apple-style-span" style="font-family: Consolas, Monaco, monospace; font-size: 12px; white-space: pre;">Version: 0.2
+</span><span class="Apple-style-span" style="font-family: Consolas, Monaco, monospace; font-size: 12px; white-space: pre;">Maintainer: King Foo
+</span><span class="Apple-style-span" style="font-family: Consolas, Monaco, monospace; font-size: 12px; white-space: pre;">Architecture: all
+</span><span class="Apple-style-span" style="font-family: Consolas, Monaco, monospace; font-size: 12px; white-space: pre;">Description: hello world
+These are the mandatory fields in the control file. For more options see http://www.debian.org/doc/debian-policy/ch-controlfields.html#s-binarycontrolfiles
+
+Step 4: Add a post-installation script
+
+You can create a file 'postinst' in the DEBIAN directory. Make sure it is executable. It will run when the installation is complete.
+
+Step 5: Create the package
+
+dpkg-deb --build helloworld
+This creates a helloworld.deb file, which you can now install on any Debian installation with following command:
+
+dpkg -i helloworld.deb

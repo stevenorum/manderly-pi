@@ -1,0 +1,7 @@
+Package: manderly
+Version: 0.0.1
+Architecture: source
+Maintainer: "Steve Norum" <sn@littlestviking.com>
+Description: tools for configuring Raspberry Pis
+ manderly contains a set of tools to make it
+ simple to set up Raspberry Pis.

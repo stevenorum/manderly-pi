@@ -1,0 +1,14 @@
+[Unit]
+Description=Manderly agent
+After=network.target
+
+[Service]
+ExecStart=/usr/bin/python3 -u /opt/manderly/bin/run_manderly.py --config /opt/manderly/conf/config.json
+WorkingDirectory=/opt/manderly/var
+StandardOutput=inherit
+StandardError=inherit
+Restart=always
+User=pi
+
+[Install]
+WantedBy=multi-user.target
