@@ -1,0 +1,3 @@
+HOME = /home/pi
+
+* * * * * pi /usr/bin/python3 -u /opt/manderly/bin/minutely_crons.py --config /opt/manderly/conf/config.json 2>&1
